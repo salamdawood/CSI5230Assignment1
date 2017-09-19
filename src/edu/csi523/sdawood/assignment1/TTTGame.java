@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.applet.Applet;
 import java.awt.*;
 
-
 public class TTTGame extends Applet {
+
+    private char [][] board;
+    private char currentPlayerMark = 'x';
 
     JPanel topPanel = new JPanel ();
     JPanel boardPanel = new JPanel();
