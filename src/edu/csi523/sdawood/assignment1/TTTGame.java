@@ -13,8 +13,11 @@ public class TTTGame extends Applet {
     JPanel boardPanel = new JPanel();
     JPanel bottomPanel = new JPanel();
     Label turnLabel = new Label();
+    Label winnerLabel = new Label();
     Button startButton = new Button();
-    Button[] tttButton = new Button[9];
+    Button[] tttButton = new Button[9]; //need to change this to TTTButton
+    int current = 0;
+    Player [] players = new Player[2];
 
     @Override
     public void init() {
@@ -50,8 +53,9 @@ public class TTTGame extends Applet {
         bottomPanel.add(startButton);
     }
 
-    public void CreateBoard(){
-        init();
+    public void DisplayWinner (Player winningPlayer) {
+        winnerLabel.setText("The winner is " + winningPlayer.name);
+        topPanel.add(winnerLabel);
     }
 
 }
