@@ -15,8 +15,7 @@ public class Player {
     private String[][] players = { { "Player 1", "X" }, { "Player 2", "O" } };
 
 
-    @Override
-    public void MarkCell(int row, int col) {
+    /*public void MarkCell(int row, int col) {
         if ((row >= 0) && (row < 3)) {
             if ((col >= 0) && (col < 3)) {
                 if (board[row][col] == 'x') {
@@ -24,24 +23,20 @@ public class Player {
                 }
             }
         }
-    }
+    }*/
    /*enum Mark{
        X, O;
    }*/
 
 
     public Player(String name, String symbol){
-        players = new Player[];
-        currentPlayer = 0;
+        /*currentPlayer = 0;
 
-        symbol = (num == 0 ? 'X' : 'O');
+        symbol = (num == 0 ? 'X' : 'O');*/
     }
 
-    public void register(){
+    public void register(Observer observer, int currentPlayer){
 
-    }
-
-    public static void main (String[] args){
 
     }
 }
