@@ -1,18 +1,22 @@
 package edu.csi523.sdawood.assignment1;
 
-import java.util.ArrayList;
+import java.util.Observable;
 
-public class DataCell {
-    ArrayList observers = new ArrayList();
-    String symbol = "";
-public class dataCellObserable implements Observable {
-
-    public void notifyListeners() {
-
+public class DataCell extends Observable {
+    public DataCell(String value) {
+        this.value = value;
     }
 
-    public void registerObserver(Observer observer) {
-
+    public String getValue() {
+        return value;
     }
-}
+
+    public void setValue(String value) {
+        this.value = value;
+        setChanged();
+        notifyObservers(value);
+    }
+
+    private String value = null;
+
 }
