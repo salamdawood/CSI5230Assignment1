@@ -20,7 +20,11 @@ public class Main extends Applet {
     DataCell[] cells = new DataCell[9];
 
     void swapPlayer () {
+
         currentPlayer = currentPlayer == players[0] ? players[1] : players[0];
+
+        turnLabel.setText("Player: " + currentPlayer.getPlayerName());
+
     }
 
     @Override
@@ -49,6 +53,7 @@ public class Main extends Applet {
             cells[i].addObserver(tttButton[i]);
             tttButton[i].setPreferredSize(new Dimension(70,70));
             boardPanel.add(tttButton[i]);
+            tttButton[i].setEnabled(false);
             tttButton[i].addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -87,7 +92,7 @@ public class Main extends Applet {
         startButton.addMouseListener(new MouseListener(){
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                StartGame();
             }
 
             @Override
@@ -111,6 +116,20 @@ public class Main extends Applet {
             }
         });
         bottomPanel.add(startButton);
+
+    }
+
+    public void StartGame() {
+        turnLabel.setText("Player: " + currentPlayer.getPlayerName());
+
+        for (int i=0; i<9; i++){
+            //enable buttons and clear any value from last game
+            tttButton[i].setLabel("");
+            tttButton[i].setEnabled(true);
+            //clear data cell values from previous game played
+            cells[i].setValue("");
+
+        }
 
     }
 
