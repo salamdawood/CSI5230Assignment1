@@ -5,38 +5,27 @@ import java.applet.Applet;
 
 public class Player {
 
-    DataCell[] cells = new DataCell[9];
-    String name;
-    String symbol;
+    private String symbol;
+    private String playerName;
 
-    private Player Players[];
-    private int currentPlayer;
-    private char myMark;
-    private String[][] players = { { "Player 1", "X" }, { "Player 2", "O" } };
-
-
-    /*public void MarkCell(int row, int col) {
-        if ((row >= 0) && (row < 3)) {
-            if ((col >= 0) && (col < 3)) {
-                if (board[row][col] == 'x') {
-                    board[row][col] = currentPlayerMark;
-                }
-            }
-        }
-    }*/
-   /*enum Mark{
-       X, O;
-   }*/
-
-
-    public Player(String name, String symbol){
-        /*currentPlayer = 0;
-
-        symbol = (num == 0 ? 'X' : 'O');*/
+    public String getSymbol() {
+        return symbol;
     }
 
-    public void register(Observer observer, int currentPlayer){
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
 
+    public Player(String name, String symbol){
+        this.playerName = name;
+        this.symbol = symbol;
+    }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 }
