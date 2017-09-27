@@ -16,14 +16,24 @@ public class Main extends Applet {
 
     Player[] players = new Player[2];
     Player currentPlayer = null;
-
-    DataCell[] cells = new DataCell[9];
+    int currentTurn;
 
     void swapPlayer () {
 
-        currentPlayer = currentPlayer == players[0] ? players[1] : players[0];
+        if (CheckForWinner()){
+            turnLabel.setText(currentPlayer.getPlayerName() + " has won the game.");
 
-        turnLabel.setText("Player: " + currentPlayer.getPlayerName());
+            for (int i=0; i < 9 ; i++) {
+                tttButton[i].setEnabled(false);
+            }
+        }
+        else if (currentTurn > 8){turnLabel.setText("No Winner");}
+        else {
+            currentTurn++;
+            currentPlayer = currentPlayer == players[0] ? players[1] : players[0];
+
+            turnLabel.setText("Player: " + currentPlayer.getPlayerName());
+        }
 
     }
 
@@ -49,8 +59,10 @@ public class Main extends Applet {
         for (int i = 0; i < 9; i++)
         {
             tttButton[i] = new TTTButton(i);
-            cells[i] = new DataCell("");
-            cells[i].addObserver(tttButton[i]);
+            players[0].cells[i] = new DataCell("");
+            players[0].cells[i].addObserver(tttButton[i]);
+            players[1].cells[i] = new DataCell("");
+            players[1].cells[i].addObserver(tttButton[i]);
             tttButton[i].setPreferredSize(new Dimension(70,70));
             boardPanel.add(tttButton[i]);
             tttButton[i].setEnabled(false);
@@ -59,7 +71,7 @@ public class Main extends Applet {
                 public void mouseClicked(MouseEvent e) {
                     TTTButton source = (TTTButton)e.getSource();
                     int index = source.getIndex();
-                    cells[index].setValue(currentPlayer.getSymbol());
+                    currentPlayer.cells[index].setValue(currentPlayer.getSymbol());
                     swapPlayer();
                     source.setEnabled(false);
                 }
@@ -127,10 +139,37 @@ public class Main extends Applet {
             tttButton[i].setLabel("");
             tttButton[i].setEnabled(true);
             //clear data cell values from previous game played
-            cells[i].setValue("");
+            players[0].cells[i].setValue("");
+            players[1].cells[i].setValue("");
+
+            currentTurn = 1;
 
         }
 
+    }
+
+    public boolean CheckForWinner() {
+
+        String playerSymbol = currentPlayer.getSymbol();
+
+        if (currentPlayer.cells[0].getValue().equals(playerSymbol) && currentPlayer.cells[1].getValue().equals(playerSymbol) && currentPlayer.cells[2].getValue().equals(playerSymbol))
+            return true;
+        if (currentPlayer.cells[3].getValue().equals(playerSymbol)&& currentPlayer.cells[4].getValue().equals(playerSymbol) && currentPlayer.cells[5].getValue().equals(playerSymbol))
+            return true;
+        if (currentPlayer.cells[6].getValue().equals(playerSymbol)&& currentPlayer.cells[7].getValue().equals(playerSymbol) && currentPlayer.cells[8].getValue().equals(playerSymbol))
+            return true;
+        if (currentPlayer.cells[0].getValue().equals(playerSymbol)&& currentPlayer.cells[3].getValue().equals(playerSymbol) && currentPlayer.cells[6].getValue().equals(playerSymbol))
+            return true;
+        if (currentPlayer.cells[1].getValue().equals(playerSymbol)&& currentPlayer.cells[4].getValue().equals(playerSymbol) && currentPlayer.cells[7].getValue().equals(playerSymbol))
+            return true;
+        if (currentPlayer.cells[2].getValue().equals(playerSymbol)&& currentPlayer.cells[5].getValue().equals(playerSymbol) && currentPlayer.cells[8].getValue().equals(playerSymbol))
+            return true;
+        if (currentPlayer.cells[0].getValue().equals(playerSymbol)&& currentPlayer.cells[4].getValue().equals(playerSymbol) && currentPlayer.cells[8].getValue().equals(playerSymbol))
+            return true;
+        if (currentPlayer.cells[2].getValue().equals(playerSymbol)&& currentPlayer.cells[4].getValue().equals(playerSymbol) && currentPlayer.cells[6].getValue().equals(playerSymbol))
+            return true;
+
+        return false;
     }
 
 }

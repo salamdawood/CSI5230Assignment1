@@ -3,6 +3,7 @@ package edu.csi523.sdawood.assignment1;
 public class Player {
     private String playerName;
     private String symbol;
+    public DataCell[] cells = new DataCell[9];
 
     public Player(String playerName, String symbol) {
         this.playerName = playerName;
