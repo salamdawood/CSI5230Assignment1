@@ -39,10 +39,8 @@ public class Main extends Applet {
 
     @Override
     public void init() {
-
-        currentPlayer = players[0] = new Player("James Bond", "X");
-        players[1] = new Player("Michael Jackson", "O");
-
+        currentPlayer = players[0] = new Player("Michael Jackson", "X");
+        players[1] = new Player("James Bond", "O");
         super.init();
         resize(250, 430);
         add(topPanel);
